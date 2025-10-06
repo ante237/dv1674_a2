@@ -58,6 +58,7 @@ namespace Dataset
             return;
         }
 
+        //Potential batch print (not iterate over each index?)
         for (auto i{0}; i < data.size(); i++)
         {
             f << std::setprecision(std::numeric_limits<double>::digits10 + 1) << data[i] << std::endl;

@@ -8,6 +8,9 @@ all: pearson verify
 pearson: vector dataset analysis pearson.cpp 
 	$(CXX) $(CXXFLAGS) pearson.cpp vector.o dataset.o analysis.o -o pearson
 
+pearson_par: vector dataset analysis pearson_par.cpp 
+	$(CXX) $(CXXFLAGS) -lpthread pearson_par.cpp vector.o dataset.o analysis.o -o pearson_par
+
 analysis: vector analysis.hpp analysis.cpp
 	$(CXX) $(CXXFLAGS) -c analysis.cpp -o analysis.o
 

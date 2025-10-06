@@ -1,0 +1,927 @@
+desc: (none)
+cmd: ./pearson_par data/128.data data_o/128_par.data
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=9364301
+mem_heap_B=115160
+mem_heap_extra_B=296
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=13802225
+mem_heap_B=134104
+mem_heap_extra_B=440
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=22869136
+mem_heap_B=173016
+mem_heap_extra_B=736
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=35040088
+mem_heap_B=506304
+mem_heap_extra_B=2128
+mem_stacks_B=0
+heap_tree=peak
+n5: 506304 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 265216 0x10BFC6: Vector::Vector(unsigned int) (vector.cpp:26)
+  n3: 265216 0x10C029: Vector::Vector(Vector const&) (vector.cpp:36)
+   n2: 196608 0x10BC6E: void std::_Construct<Vector, Vector const&>(Vector*, Vector const&) (stl_construct.h:119)
+    n1: 131072 0x10BA4B: Vector* std::__do_uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:120)
+     n1: 131072 0x10B8D7: Vector* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:137)
+      n1: 131072 0x10B663: Vector* std::uninitialized_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:185)
+       n1: 131072 0x10B2DE: Vector* std::__uninitialized_copy_a<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, Vector>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 131072 0x10ACF7: std::vector<Vector, std::allocator<Vector> >::vector(std::vector<Vector, std::allocator<Vector> > const&) (stl_vector.h:606)
+         n0: 131072 0x10A852: main (pearson_par.cpp:18)
+    n1: 65536 0x10D53A: Vector* std::__do_uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:120)
+     n1: 65536 0x10D4F7: Vector* std::__uninitialized_copy<false>::__uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:137)
+      n1: 65536 0x10D497: Vector* std::uninitialized_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:185)
+       n1: 65536 0x10D3DD: Vector* std::__uninitialized_copy_a<Vector const*, Vector*, Vector>(Vector const*, Vector const*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 65536 0x10D304: Vector* std::__uninitialized_move_if_noexcept_a<Vector*, Vector*, std::allocator<Vector> >(Vector*, Vector*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:399)
+         n1: 65536 0x10CE34: void std::vector<Vector, std::allocator<Vector> >::_M_realloc_insert<Vector const&>(__gnu_cxx::__normal_iterator<Vector*, std::vector<Vector, std::allocator<Vector> > >, Vector const&) (vector.tcc:493)
+          n1: 65536 0x10CA88: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1292)
+           n1: 65536 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+            n0: 65536 0x10A823: main (pearson_par.cpp:17)
+   n1: 64512 0x10CA2C: construct<Vector, const Vector&> (new_allocator.h:191)
+    n1: 64512 0x10CA2C: construct<Vector, const Vector&> (alloc_traits.h:538)
+     n1: 64512 0x10CA2C: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1286)
+      n1: 64512 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+       n0: 64512 0x10A823: main (pearson_par.cpp:17)
+   n0: 4096 in 3 places, all below massif's threshold (1.00%)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 97632 0x10D86D: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:48)
+  n0: 97632 0x10A865: main (pearson_par.cpp:18)
+ n1: 73728 0x491238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFF0000B2: ???
+        n1: 73728 0x1FFF0000C0: ???
+         n0: 73728 0x1FFF0000CE: ???
+ n1: 65024 0x10BD07: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 65024 0x10B962: allocate (alloc_traits.h:482)
+   n1: 65024 0x10B962: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:381)
+    n1: 65024 0x10EA9E: std::vector<double, std::allocator<double> >::_M_default_append(unsigned long) (vector.tcc:663)
+     n1: 65024 0x10E664: std::vector<double, std::allocator<double> >::resize(unsigned long) (stl_vector.h:1016)
+      n1: 65024 0x10D7EB: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:44)
+       n0: 65024 0x10A865: main (pearson_par.cpp:18)
+ n0: 4704 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=5
+#-----------
+time=40830164
+mem_heap_B=505280
+mem_heap_extra_B=2120
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=50785028
+mem_heap_B=505280
+mem_heap_extra_B=2120
+mem_stacks_B=0
+heap_tree=detailed
+n5: 505280 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 264192 0x10BFC6: Vector::Vector(unsigned int) (vector.cpp:26)
+  n3: 264192 0x10C029: Vector::Vector(Vector const&) (vector.cpp:36)
+   n2: 196608 0x10BC6E: void std::_Construct<Vector, Vector const&>(Vector*, Vector const&) (stl_construct.h:119)
+    n1: 131072 0x10BA4B: Vector* std::__do_uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:120)
+     n1: 131072 0x10B8D7: Vector* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:137)
+      n1: 131072 0x10B663: Vector* std::uninitialized_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:185)
+       n1: 131072 0x10B2DE: Vector* std::__uninitialized_copy_a<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, Vector>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 131072 0x10ACF7: std::vector<Vector, std::allocator<Vector> >::vector(std::vector<Vector, std::allocator<Vector> > const&) (stl_vector.h:606)
+         n0: 131072 0x10A852: main (pearson_par.cpp:18)
+    n1: 65536 0x10D53A: Vector* std::__do_uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:120)
+     n1: 65536 0x10D4F7: Vector* std::__uninitialized_copy<false>::__uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:137)
+      n1: 65536 0x10D497: Vector* std::uninitialized_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:185)
+       n1: 65536 0x10D3DD: Vector* std::__uninitialized_copy_a<Vector const*, Vector*, Vector>(Vector const*, Vector const*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 65536 0x10D304: Vector* std::__uninitialized_move_if_noexcept_a<Vector*, Vector*, std::allocator<Vector> >(Vector*, Vector*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:399)
+         n1: 65536 0x10CE34: void std::vector<Vector, std::allocator<Vector> >::_M_realloc_insert<Vector const&>(__gnu_cxx::__normal_iterator<Vector*, std::vector<Vector, std::allocator<Vector> > >, Vector const&) (vector.tcc:493)
+          n1: 65536 0x10CA88: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1292)
+           n1: 65536 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+            n0: 65536 0x10A823: main (pearson_par.cpp:17)
+   n1: 64512 0x10CA2C: construct<Vector, const Vector&> (new_allocator.h:191)
+    n1: 64512 0x10CA2C: construct<Vector, const Vector&> (alloc_traits.h:538)
+     n1: 64512 0x10CA2C: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1286)
+      n1: 64512 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+       n0: 64512 0x10A823: main (pearson_par.cpp:17)
+   n0: 3072 in 5 places, all below massif's threshold (1.00%)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 97632 0x10D86D: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:48)
+  n0: 97632 0x10A865: main (pearson_par.cpp:18)
+ n1: 73728 0x491238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFF0000B2: ???
+        n1: 73728 0x1FFF0000C0: ???
+         n0: 73728 0x1FFF0000CE: ???
+ n1: 65024 0x10BD07: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 65024 0x10B962: allocate (alloc_traits.h:482)
+   n1: 65024 0x10B962: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:381)
+    n1: 65024 0x10EA9E: std::vector<double, std::allocator<double> >::_M_default_append(unsigned long) (vector.tcc:663)
+     n1: 65024 0x10E664: std::vector<double, std::allocator<double> >::resize(unsigned long) (stl_vector.h:1016)
+      n1: 65024 0x10D7EB: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:44)
+       n0: 65024 0x10A865: main (pearson_par.cpp:18)
+ n0: 4704 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=7
+#-----------
+time=57559609
+mem_heap_B=508352
+mem_heap_extra_B=2144
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=67412905
+mem_heap_B=508352
+mem_heap_extra_B=2144
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=79559061
+mem_heap_B=507328
+mem_heap_extra_B=2136
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=88036904
+mem_heap_B=508960
+mem_heap_extra_B=2160
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=95452268
+mem_heap_B=508960
+mem_heap_extra_B=2160
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=107107299
+mem_heap_B=506912
+mem_heap_extra_B=2144
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=114522663
+mem_heap_B=506912
+mem_heap_extra_B=2144
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=121938027
+mem_heap_B=506912
+mem_heap_extra_B=2144
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=131470099
+mem_heap_B=505888
+mem_heap_extra_B=2136
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=140726552
+mem_heap_B=506192
+mem_heap_extra_B=2144
+mem_stacks_B=0
+heap_tree=detailed
+n5: 506192 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 264192 0x10BFC6: Vector::Vector(unsigned int) (vector.cpp:26)
+  n3: 264192 0x10C029: Vector::Vector(Vector const&) (vector.cpp:36)
+   n2: 196608 0x10BC6E: void std::_Construct<Vector, Vector const&>(Vector*, Vector const&) (stl_construct.h:119)
+    n1: 131072 0x10BA4B: Vector* std::__do_uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:120)
+     n1: 131072 0x10B8D7: Vector* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:137)
+      n1: 131072 0x10B663: Vector* std::uninitialized_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:185)
+       n1: 131072 0x10B2DE: Vector* std::__uninitialized_copy_a<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, Vector>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 131072 0x10ACF7: std::vector<Vector, std::allocator<Vector> >::vector(std::vector<Vector, std::allocator<Vector> > const&) (stl_vector.h:606)
+         n0: 131072 0x10A852: main (pearson_par.cpp:18)
+    n1: 65536 0x10D53A: Vector* std::__do_uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:120)
+     n1: 65536 0x10D4F7: Vector* std::__uninitialized_copy<false>::__uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:137)
+      n1: 65536 0x10D497: Vector* std::uninitialized_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:185)
+       n1: 65536 0x10D3DD: Vector* std::__uninitialized_copy_a<Vector const*, Vector*, Vector>(Vector const*, Vector const*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 65536 0x10D304: Vector* std::__uninitialized_move_if_noexcept_a<Vector*, Vector*, std::allocator<Vector> >(Vector*, Vector*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:399)
+         n1: 65536 0x10CE34: void std::vector<Vector, std::allocator<Vector> >::_M_realloc_insert<Vector const&>(__gnu_cxx::__normal_iterator<Vector*, std::vector<Vector, std::allocator<Vector> > >, Vector const&) (vector.tcc:493)
+          n1: 65536 0x10CA88: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1292)
+           n1: 65536 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+            n0: 65536 0x10A823: main (pearson_par.cpp:17)
+   n1: 64512 0x10CA2C: construct<Vector, const Vector&> (new_allocator.h:191)
+    n1: 64512 0x10CA2C: construct<Vector, const Vector&> (alloc_traits.h:538)
+     n1: 64512 0x10CA2C: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1286)
+      n1: 64512 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+       n0: 64512 0x10A823: main (pearson_par.cpp:17)
+   n0: 3072 in 5 places, all below massif's threshold (1.00%)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 97632 0x10D86D: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:48)
+  n0: 97632 0x10A865: main (pearson_par.cpp:18)
+ n1: 73728 0x491238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFF0000B2: ???
+        n1: 73728 0x1FFF0000C0: ???
+         n0: 73728 0x1FFF0000CE: ???
+ n1: 65024 0x10BD07: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 65024 0x10B962: allocate (alloc_traits.h:482)
+   n1: 65024 0x10B962: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:381)
+    n1: 65024 0x10EA9E: std::vector<double, std::allocator<double> >::_M_default_append(unsigned long) (vector.tcc:663)
+     n1: 65024 0x10E664: std::vector<double, std::allocator<double> >::resize(unsigned long) (stl_vector.h:1016)
+      n1: 65024 0x10D7EB: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:44)
+       n0: 65024 0x10A865: main (pearson_par.cpp:18)
+ n0: 5616 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=17
+#-----------
+time=148123865
+mem_heap_B=509264
+mem_heap_extra_B=2168
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=157375154
+mem_heap_B=507216
+mem_heap_extra_B=2152
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=162927854
+mem_heap_B=507216
+mem_heap_extra_B=2152
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=170326624
+mem_heap_B=507216
+mem_heap_extra_B=2152
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=175879374
+mem_heap_B=507216
+mem_heap_extra_B=2152
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=183278144
+mem_heap_B=507216
+mem_heap_extra_B=2152
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=188830894
+mem_heap_B=507216
+mem_heap_extra_B=2152
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=196231753
+mem_heap_B=507520
+mem_heap_extra_B=2160
+mem_stacks_B=0
+heap_tree=detailed
+n5: 507520 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 265216 0x10BFC6: Vector::Vector(unsigned int) (vector.cpp:26)
+  n3: 265216 0x10C029: Vector::Vector(Vector const&) (vector.cpp:36)
+   n2: 196608 0x10BC6E: void std::_Construct<Vector, Vector const&>(Vector*, Vector const&) (stl_construct.h:119)
+    n1: 131072 0x10BA4B: Vector* std::__do_uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:120)
+     n1: 131072 0x10B8D7: Vector* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:137)
+      n1: 131072 0x10B663: Vector* std::uninitialized_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:185)
+       n1: 131072 0x10B2DE: Vector* std::__uninitialized_copy_a<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, Vector>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 131072 0x10ACF7: std::vector<Vector, std::allocator<Vector> >::vector(std::vector<Vector, std::allocator<Vector> > const&) (stl_vector.h:606)
+         n0: 131072 0x10A852: main (pearson_par.cpp:18)
+    n1: 65536 0x10D53A: Vector* std::__do_uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:120)
+     n1: 65536 0x10D4F7: Vector* std::__uninitialized_copy<false>::__uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:137)
+      n1: 65536 0x10D497: Vector* std::uninitialized_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:185)
+       n1: 65536 0x10D3DD: Vector* std::__uninitialized_copy_a<Vector const*, Vector*, Vector>(Vector const*, Vector const*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 65536 0x10D304: Vector* std::__uninitialized_move_if_noexcept_a<Vector*, Vector*, std::allocator<Vector> >(Vector*, Vector*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:399)
+         n1: 65536 0x10CE34: void std::vector<Vector, std::allocator<Vector> >::_M_realloc_insert<Vector const&>(__gnu_cxx::__normal_iterator<Vector*, std::vector<Vector, std::allocator<Vector> > >, Vector const&) (vector.tcc:493)
+          n1: 65536 0x10CA88: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1292)
+           n1: 65536 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+            n0: 65536 0x10A823: main (pearson_par.cpp:17)
+   n1: 64512 0x10CA2C: construct<Vector, const Vector&> (new_allocator.h:191)
+    n1: 64512 0x10CA2C: construct<Vector, const Vector&> (alloc_traits.h:538)
+     n1: 64512 0x10CA2C: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1286)
+      n1: 64512 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+       n0: 64512 0x10A823: main (pearson_par.cpp:17)
+   n0: 4096 in 5 places, all below massif's threshold (1.00%)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 97632 0x10D86D: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:48)
+  n0: 97632 0x10A865: main (pearson_par.cpp:18)
+ n1: 73728 0x491238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFF0000B2: ???
+        n1: 73728 0x1FFF0000C0: ???
+         n0: 73728 0x1FFF0000CE: ???
+ n1: 65024 0x10BD07: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 65024 0x10B962: allocate (alloc_traits.h:482)
+   n1: 65024 0x10B962: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:381)
+    n1: 65024 0x10EA9E: std::vector<double, std::allocator<double> >::_M_default_append(unsigned long) (vector.tcc:663)
+     n1: 65024 0x10E664: std::vector<double, std::allocator<double> >::resize(unsigned long) (stl_vector.h:1016)
+      n1: 65024 0x10D7EB: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:44)
+       n0: 65024 0x10A865: main (pearson_par.cpp:18)
+ n0: 5920 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=25
+#-----------
+time=201784503
+mem_heap_B=507520
+mem_heap_extra_B=2160
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=209183273
+mem_heap_B=507520
+mem_heap_extra_B=2160
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=214736023
+mem_heap_B=507520
+mem_heap_extra_B=2160
+mem_stacks_B=0
+heap_tree=detailed
+n5: 507520 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 265216 0x10BFC6: Vector::Vector(unsigned int) (vector.cpp:26)
+  n3: 265216 0x10C029: Vector::Vector(Vector const&) (vector.cpp:36)
+   n2: 196608 0x10BC6E: void std::_Construct<Vector, Vector const&>(Vector*, Vector const&) (stl_construct.h:119)
+    n1: 131072 0x10BA4B: Vector* std::__do_uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:120)
+     n1: 131072 0x10B8D7: Vector* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:137)
+      n1: 131072 0x10B663: Vector* std::uninitialized_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:185)
+       n1: 131072 0x10B2DE: Vector* std::__uninitialized_copy_a<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, Vector>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 131072 0x10ACF7: std::vector<Vector, std::allocator<Vector> >::vector(std::vector<Vector, std::allocator<Vector> > const&) (stl_vector.h:606)
+         n0: 131072 0x10A852: main (pearson_par.cpp:18)
+    n1: 65536 0x10D53A: Vector* std::__do_uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:120)
+     n1: 65536 0x10D4F7: Vector* std::__uninitialized_copy<false>::__uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:137)
+      n1: 65536 0x10D497: Vector* std::uninitialized_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:185)
+       n1: 65536 0x10D3DD: Vector* std::__uninitialized_copy_a<Vector const*, Vector*, Vector>(Vector const*, Vector const*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 65536 0x10D304: Vector* std::__uninitialized_move_if_noexcept_a<Vector*, Vector*, std::allocator<Vector> >(Vector*, Vector*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:399)
+         n1: 65536 0x10CE34: void std::vector<Vector, std::allocator<Vector> >::_M_realloc_insert<Vector const&>(__gnu_cxx::__normal_iterator<Vector*, std::vector<Vector, std::allocator<Vector> > >, Vector const&) (vector.tcc:493)
+          n1: 65536 0x10CA88: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1292)
+           n1: 65536 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+            n0: 65536 0x10A823: main (pearson_par.cpp:17)
+   n1: 64512 0x10CA2C: construct<Vector, const Vector&> (new_allocator.h:191)
+    n1: 64512 0x10CA2C: construct<Vector, const Vector&> (alloc_traits.h:538)
+     n1: 64512 0x10CA2C: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1286)
+      n1: 64512 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+       n0: 64512 0x10A823: main (pearson_par.cpp:17)
+   n0: 4096 in 5 places, all below massif's threshold (1.00%)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 97632 0x10D86D: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:48)
+  n0: 97632 0x10A865: main (pearson_par.cpp:18)
+ n1: 73728 0x491238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFF0000B2: ???
+        n1: 73728 0x1FFF0000C0: ???
+         n0: 73728 0x1FFF0000CE: ???
+ n1: 65024 0x10BD07: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 65024 0x10B962: allocate (alloc_traits.h:482)
+   n1: 65024 0x10B962: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:381)
+    n1: 65024 0x10EA9E: std::vector<double, std::allocator<double> >::_M_default_append(unsigned long) (vector.tcc:663)
+     n1: 65024 0x10E664: std::vector<double, std::allocator<double> >::resize(unsigned long) (stl_vector.h:1016)
+      n1: 65024 0x10D7EB: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:44)
+       n0: 65024 0x10A865: main (pearson_par.cpp:18)
+ n0: 5920 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=28
+#-----------
+time=223987141
+mem_heap_B=506496
+mem_heap_extra_B=2152
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=233522409
+mem_heap_B=506496
+mem_heap_extra_B=2152
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=243054989
+mem_heap_B=509872
+mem_heap_extra_B=2184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=249411069
+mem_heap_B=508848
+mem_heap_extra_B=2176
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=258946398
+mem_heap_B=508848
+mem_heap_extra_B=2176
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=265301131
+mem_heap_B=509872
+mem_heap_extra_B=2184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=271657211
+mem_heap_B=508848
+mem_heap_extra_B=2176
+mem_stacks_B=0
+heap_tree=detailed
+n5: 508848 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 266240 0x10BFC6: Vector::Vector(unsigned int) (vector.cpp:26)
+  n3: 266240 0x10C029: Vector::Vector(Vector const&) (vector.cpp:36)
+   n2: 196608 0x10BC6E: void std::_Construct<Vector, Vector const&>(Vector*, Vector const&) (stl_construct.h:119)
+    n1: 131072 0x10BA4B: Vector* std::__do_uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:120)
+     n1: 131072 0x10B8D7: Vector* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:137)
+      n1: 131072 0x10B663: Vector* std::uninitialized_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:185)
+       n1: 131072 0x10B2DE: Vector* std::__uninitialized_copy_a<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, Vector>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 131072 0x10ACF7: std::vector<Vector, std::allocator<Vector> >::vector(std::vector<Vector, std::allocator<Vector> > const&) (stl_vector.h:606)
+         n0: 131072 0x10A852: main (pearson_par.cpp:18)
+    n1: 65536 0x10D53A: Vector* std::__do_uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:120)
+     n1: 65536 0x10D4F7: Vector* std::__uninitialized_copy<false>::__uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:137)
+      n1: 65536 0x10D497: Vector* std::uninitialized_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:185)
+       n1: 65536 0x10D3DD: Vector* std::__uninitialized_copy_a<Vector const*, Vector*, Vector>(Vector const*, Vector const*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 65536 0x10D304: Vector* std::__uninitialized_move_if_noexcept_a<Vector*, Vector*, std::allocator<Vector> >(Vector*, Vector*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:399)
+         n1: 65536 0x10CE34: void std::vector<Vector, std::allocator<Vector> >::_M_realloc_insert<Vector const&>(__gnu_cxx::__normal_iterator<Vector*, std::vector<Vector, std::allocator<Vector> > >, Vector const&) (vector.tcc:493)
+          n1: 65536 0x10CA88: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1292)
+           n1: 65536 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+            n0: 65536 0x10A823: main (pearson_par.cpp:17)
+   n1: 64512 0x10CA2C: construct<Vector, const Vector&> (new_allocator.h:191)
+    n1: 64512 0x10CA2C: construct<Vector, const Vector&> (alloc_traits.h:538)
+     n1: 64512 0x10CA2C: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1286)
+      n1: 64512 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+       n0: 64512 0x10A823: main (pearson_par.cpp:17)
+   n0: 5120 in 5 places, all below massif's threshold (1.00%)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 97632 0x10D86D: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:48)
+  n0: 97632 0x10A865: main (pearson_par.cpp:18)
+ n1: 73728 0x491238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFF0000B2: ???
+        n1: 73728 0x1FFF0000C0: ???
+         n0: 73728 0x1FFF0000CE: ???
+ n1: 65024 0x10BD07: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 65024 0x10B962: allocate (alloc_traits.h:482)
+   n1: 65024 0x10B962: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:381)
+    n1: 65024 0x10EA9E: std::vector<double, std::allocator<double> >::_M_default_append(unsigned long) (vector.tcc:663)
+     n1: 65024 0x10E664: std::vector<double, std::allocator<double> >::resize(unsigned long) (stl_vector.h:1016)
+      n1: 65024 0x10D7EB: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:44)
+       n0: 65024 0x10A865: main (pearson_par.cpp:18)
+ n0: 6224 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=35
+#-----------
+time=278016782
+mem_heap_B=506800
+mem_heap_extra_B=2160
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=284371526
+mem_heap_B=507824
+mem_heap_extra_B=2168
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=290727606
+mem_heap_B=506800
+mem_heap_extra_B=2160
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=297085823
+mem_heap_B=507104
+mem_heap_extra_B=2168
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=309795504
+mem_heap_B=510176
+mem_heap_extra_B=2192
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=316151534
+mem_heap_B=509152
+mem_heap_extra_B=2184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=325686863
+mem_heap_B=509152
+mem_heap_extra_B=2184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=332041596
+mem_heap_B=510176
+mem_heap_extra_B=2192
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=341578107
+mem_heap_B=507104
+mem_heap_extra_B=2168
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=347934234
+mem_heap_B=509152
+mem_heap_extra_B=2184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=354288967
+mem_heap_B=510176
+mem_heap_extra_B=2192
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=360645047
+mem_heap_B=509152
+mem_heap_extra_B=2184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=367004618
+mem_heap_B=507104
+mem_heap_extra_B=2168
+mem_stacks_B=0
+heap_tree=detailed
+n5: 507104 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 264192 0x10BFC6: Vector::Vector(unsigned int) (vector.cpp:26)
+  n3: 264192 0x10C029: Vector::Vector(Vector const&) (vector.cpp:36)
+   n2: 196608 0x10BC6E: void std::_Construct<Vector, Vector const&>(Vector*, Vector const&) (stl_construct.h:119)
+    n1: 131072 0x10BA4B: Vector* std::__do_uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:120)
+     n1: 131072 0x10B8D7: Vector* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:137)
+      n1: 131072 0x10B663: Vector* std::uninitialized_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:185)
+       n1: 131072 0x10B2DE: Vector* std::__uninitialized_copy_a<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, Vector>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 131072 0x10ACF7: std::vector<Vector, std::allocator<Vector> >::vector(std::vector<Vector, std::allocator<Vector> > const&) (stl_vector.h:606)
+         n0: 131072 0x10A852: main (pearson_par.cpp:18)
+    n1: 65536 0x10D53A: Vector* std::__do_uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:120)
+     n1: 65536 0x10D4F7: Vector* std::__uninitialized_copy<false>::__uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:137)
+      n1: 65536 0x10D497: Vector* std::uninitialized_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:185)
+       n1: 65536 0x10D3DD: Vector* std::__uninitialized_copy_a<Vector const*, Vector*, Vector>(Vector const*, Vector const*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 65536 0x10D304: Vector* std::__uninitialized_move_if_noexcept_a<Vector*, Vector*, std::allocator<Vector> >(Vector*, Vector*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:399)
+         n1: 65536 0x10CE34: void std::vector<Vector, std::allocator<Vector> >::_M_realloc_insert<Vector const&>(__gnu_cxx::__normal_iterator<Vector*, std::vector<Vector, std::allocator<Vector> > >, Vector const&) (vector.tcc:493)
+          n1: 65536 0x10CA88: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1292)
+           n1: 65536 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+            n0: 65536 0x10A823: main (pearson_par.cpp:17)
+   n1: 64512 0x10CA2C: construct<Vector, const Vector&> (new_allocator.h:191)
+    n1: 64512 0x10CA2C: construct<Vector, const Vector&> (alloc_traits.h:538)
+     n1: 64512 0x10CA2C: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1286)
+      n1: 64512 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+       n0: 64512 0x10A823: main (pearson_par.cpp:17)
+   n0: 3072 in 5 places, all below massif's threshold (1.00%)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 97632 0x10D86D: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:48)
+  n0: 97632 0x10A865: main (pearson_par.cpp:18)
+ n1: 73728 0x491238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFF0000B2: ???
+        n1: 73728 0x1FFF0000C0: ???
+         n0: 73728 0x1FFF0000CE: ???
+ n1: 65024 0x10BD07: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 65024 0x10B962: allocate (alloc_traits.h:482)
+   n1: 65024 0x10B962: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:381)
+    n1: 65024 0x10EA9E: std::vector<double, std::allocator<double> >::_M_default_append(unsigned long) (vector.tcc:663)
+     n1: 65024 0x10E664: std::vector<double, std::allocator<double> >::resize(unsigned long) (stl_vector.h:1016)
+      n1: 65024 0x10D7EB: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:44)
+       n0: 65024 0x10A865: main (pearson_par.cpp:18)
+ n0: 6528 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=48
+#-----------
+time=373359362
+mem_heap_B=508128
+mem_heap_extra_B=2176
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=382891189
+mem_heap_B=509152
+mem_heap_extra_B=2184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=387333992
+mem_heap_B=507104
+mem_heap_extra_B=2168
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=391772159
+mem_heap_B=510176
+mem_heap_extra_B=2192
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=396214962
+mem_heap_B=508128
+mem_heap_extra_B=2176
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=400655509
+mem_heap_B=509152
+mem_heap_extra_B=2184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=405098301
+mem_heap_B=507104
+mem_heap_extra_B=2168
+mem_stacks_B=0
+heap_tree=detailed
+n5: 507104 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 264192 0x10BFC6: Vector::Vector(unsigned int) (vector.cpp:26)
+  n3: 264192 0x10C029: Vector::Vector(Vector const&) (vector.cpp:36)
+   n2: 196608 0x10BC6E: void std::_Construct<Vector, Vector const&>(Vector*, Vector const&) (stl_construct.h:119)
+    n1: 131072 0x10BA4B: Vector* std::__do_uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:120)
+     n1: 131072 0x10B8D7: Vector* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:137)
+      n1: 131072 0x10B663: Vector* std::uninitialized_copy<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*) (stl_uninitialized.h:185)
+       n1: 131072 0x10B2DE: Vector* std::__uninitialized_copy_a<__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, Vector>(__gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, __gnu_cxx::__normal_iterator<Vector const*, std::vector<Vector, std::allocator<Vector> > >, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 131072 0x10ACF7: std::vector<Vector, std::allocator<Vector> >::vector(std::vector<Vector, std::allocator<Vector> > const&) (stl_vector.h:606)
+         n0: 131072 0x10A852: main (pearson_par.cpp:18)
+    n1: 65536 0x10D53A: Vector* std::__do_uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:120)
+     n1: 65536 0x10D4F7: Vector* std::__uninitialized_copy<false>::__uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:137)
+      n1: 65536 0x10D497: Vector* std::uninitialized_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:185)
+       n1: 65536 0x10D3DD: Vector* std::__uninitialized_copy_a<Vector const*, Vector*, Vector>(Vector const*, Vector const*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 65536 0x10D304: Vector* std::__uninitialized_move_if_noexcept_a<Vector*, Vector*, std::allocator<Vector> >(Vector*, Vector*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:399)
+         n1: 65536 0x10CE34: void std::vector<Vector, std::allocator<Vector> >::_M_realloc_insert<Vector const&>(__gnu_cxx::__normal_iterator<Vector*, std::vector<Vector, std::allocator<Vector> > >, Vector const&) (vector.tcc:493)
+          n1: 65536 0x10CA88: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1292)
+           n1: 65536 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+            n0: 65536 0x10A823: main (pearson_par.cpp:17)
+   n1: 64512 0x10CA2C: construct<Vector, const Vector&> (new_allocator.h:191)
+    n1: 64512 0x10CA2C: construct<Vector, const Vector&> (alloc_traits.h:538)
+     n1: 64512 0x10CA2C: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1286)
+      n1: 64512 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+       n0: 64512 0x10A823: main (pearson_par.cpp:17)
+   n0: 3072 in 5 places, all below massif's threshold (1.00%)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 97632 0x10D86D: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:48)
+  n0: 97632 0x10A865: main (pearson_par.cpp:18)
+ n1: 73728 0x491238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFF0000B2: ???
+        n1: 73728 0x1FFF0000C0: ???
+         n0: 73728 0x1FFF0000CE: ???
+ n1: 65024 0x10BD07: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 65024 0x10B962: allocate (alloc_traits.h:482)
+   n1: 65024 0x10B962: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:381)
+    n1: 65024 0x10EA9E: std::vector<double, std::allocator<double> >::_M_default_append(unsigned long) (vector.tcc:663)
+     n1: 65024 0x10E664: std::vector<double, std::allocator<double> >::resize(unsigned long) (stl_vector.h:1016)
+      n1: 65024 0x10D7EB: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:44)
+       n0: 65024 0x10A865: main (pearson_par.cpp:18)
+ n0: 6528 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=55
+#-----------
+time=409537711
+mem_heap_B=507104
+mem_heap_extra_B=2168
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=413975830
+mem_heap_B=509152
+mem_heap_extra_B=2184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=418418633
+mem_heap_B=507104
+mem_heap_extra_B=2168
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=422856850
+mem_heap_B=510176
+mem_heap_extra_B=2192
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=427299653
+mem_heap_B=508128
+mem_heap_extra_B=2176
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=431739167
+mem_heap_B=509152
+mem_heap_extra_B=2184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=436181959
+mem_heap_B=507104
+mem_heap_extra_B=2168
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=440621369
+mem_heap_B=507104
+mem_heap_extra_B=2168
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=445059488
+mem_heap_B=509152
+mem_heap_extra_B=2184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=474147223
+mem_heap_B=436236
+mem_heap_extra_B=1132
+mem_stacks_B=0
+heap_tree=detailed
+n5: 436236 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 131072 0x10BFC6: Vector::Vector(unsigned int) (vector.cpp:26)
+  n3: 131072 0x10C029: Vector::Vector(Vector const&) (vector.cpp:36)
+   n2: 65536 0x10BC6E: void std::_Construct<Vector, Vector const&>(Vector*, Vector const&) (stl_construct.h:119)
+    n1: 65536 0x10D53A: Vector* std::__do_uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:120)
+     n1: 65536 0x10D4F7: Vector* std::__uninitialized_copy<false>::__uninit_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:137)
+      n1: 65536 0x10D497: Vector* std::uninitialized_copy<Vector const*, Vector*>(Vector const*, Vector const*, Vector*) (stl_uninitialized.h:185)
+       n1: 65536 0x10D3DD: Vector* std::__uninitialized_copy_a<Vector const*, Vector*, Vector>(Vector const*, Vector const*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:373)
+        n1: 65536 0x10D304: Vector* std::__uninitialized_move_if_noexcept_a<Vector*, Vector*, std::allocator<Vector> >(Vector*, Vector*, Vector*, std::allocator<Vector>&) (stl_uninitialized.h:399)
+         n1: 65536 0x10CE34: void std::vector<Vector, std::allocator<Vector> >::_M_realloc_insert<Vector const&>(__gnu_cxx::__normal_iterator<Vector*, std::vector<Vector, std::allocator<Vector> > >, Vector const&) (vector.tcc:493)
+          n1: 65536 0x10CA88: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1292)
+           n1: 65536 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+            n0: 65536 0x10A823: main (pearson_par.cpp:17)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n1: 64512 0x10CA2C: construct<Vector, const Vector&> (new_allocator.h:191)
+    n1: 64512 0x10CA2C: construct<Vector, const Vector&> (alloc_traits.h:538)
+     n1: 64512 0x10CA2C: std::vector<Vector, std::allocator<Vector> >::push_back(Vector const&) (stl_vector.h:1286)
+      n1: 64512 0x10C52A: Dataset::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (dataset.cpp:43)
+       n0: 64512 0x10A823: main (pearson_par.cpp:17)
+   n0: 1024 in 5 places, all below massif's threshold (1.00%)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 130048 0x10BD07: std::__new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:151)
+  n1: 130048 0x10B962: allocate (alloc_traits.h:482)
+   n2: 130048 0x10B962: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:381)
+    n1: 65024 0x10B75E: std::_Vector_base<double, std::allocator<double> >::_M_create_storage(unsigned long) (stl_vector.h:398)
+     n1: 65024 0x10B3E6: std::_Vector_base<double, std::allocator<double> >::_Vector_base(unsigned long, std::allocator<double> const&) (stl_vector.h:335)
+      n1: 65024 0x10AE6A: std::vector<double, std::allocator<double> >::vector(std::vector<double, std::allocator<double> > const&) (stl_vector.h:603)
+       n0: 65024 0x10A8B8: main (pearson_par.cpp:19)
+    n1: 65024 0x10EA9E: std::vector<double, std::allocator<double> >::_M_default_append(unsigned long) (vector.tcc:663)
+     n1: 65024 0x10E664: std::vector<double, std::allocator<double> >::resize(unsigned long) (stl_vector.h:1016)
+      n1: 65024 0x10D7EB: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:44)
+       n0: 65024 0x10A865: main (pearson_par.cpp:18)
+ n1: 97632 0x10D86D: Analysis::correlation_coefficients_par(std::vector<Vector, std::allocator<Vector> >) (analysis.cpp:48)
+  n0: 97632 0x10A865: main (pearson_par.cpp:18)
+ n1: 73728 0x491238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFF0000B2: ???
+        n1: 73728 0x1FFF0000C0: ???
+         n0: 73728 0x1FFF0000CE: ???
+ n0: 3756 in 8 places, all below massif's threshold (1.00%)
