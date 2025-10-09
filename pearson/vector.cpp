@@ -24,7 +24,7 @@ Vector::~Vector()
 }
 
 Vector::Vector(unsigned size)
-    : size{size}, data{new double[size]}
+    : size{size}, data{new(std::align_val_t(32)) double[size]}
 {
 }
 
@@ -36,9 +36,12 @@ Vector::Vector(unsigned size, double *data)
 Vector::Vector(const Vector &other)
     : Vector{other.size}
 {
-    for (auto i{0}; i < size; i++)
+    for (auto i{0}; i + 3 < size; i += 4)
     {
         data[i] = other.data[i];
+        data[i+1] = other.data[i+1];
+        data[i+2] = other.data[i+2];
+        data[i+3] = other.data[i+3];
     }
 }
 
@@ -68,7 +71,7 @@ double Vector::mean() const
     __m256d sumVec = _mm256_setzero_pd();
     for (auto i{0}; i + 3 < size; i += 4)
     {
-        __m256d chunk = _mm256_loadu_pd(&data[i]);
+        __m256d chunk = _mm256_load_pd(&data[i]);
         sumVec = _mm256_add_pd(sumVec, chunk);
     }
     alignas(32) double tmp[4];
@@ -84,13 +87,17 @@ double Vector::magnitude() const
     return std::sqrt(dot_prod);
 }
 
+//Takes longer than non-simd?
 Vector Vector::operator/(double div)
 {
     auto result{*this};
+    __m256d divisor = _mm256_set1_pd(div);
 
-    for (auto i{0}; i < size; i++)
+    for (auto i{0}; i + 3 < size; i += 4)
     {
-        result[i] /= div;
+        __m256d vecSeg = _mm256_load_pd(&(result.data[i]));
+        vecSeg = _mm256_div_pd(vecSeg, divisor);
+        _mm256_store_pd(&(result.data)[i], vecSeg);
     }
 
     return result;
@@ -103,22 +110,29 @@ Vector Vector::operator-(double sub)
 
     for (auto i{0}; i + 3 < size; i += 4)
     {
-        __m256d vecSeg = _mm256_loadu_pd(&(result.data)[i]);
+        __m256d vecSeg = _mm256_load_pd(&(result.data)[i]);
         vecSeg = _mm256_sub_pd(vecSeg, scalar);
-        _mm256_storeu_pd(&(result.data)[i], vecSeg);
+        _mm256_store_pd(&(result.data)[i], vecSeg);
     }
-
     return result;
 }
 
-double Vector::dot(Vector rhs) const
+double Vector::dot(const Vector& rhs) const
 {
     double result{0};
+    __m256d sumVec = _mm256_setzero_pd();
 
-    for (auto i{0}; i < size; i++)
+    for (auto i{0}; i + 3 < size; i += 4)
     {
-        result += data[i] * rhs[i];
+        __m256d vec1 = _mm256_load_pd(&data[i]);
+        __m256d vec2 = _mm256_load_pd(&rhs.data[i]);
+        vec1 = _mm256_mul_pd(vec1, vec2);
+        sumVec = _mm256_add_pd(sumVec, vec1);
     }
 
+    alignas(32) double tmp[4];
+    _mm256_store_pd(tmp, sumVec);
+    result = tmp[0] + tmp[1] + tmp[2] + tmp[3];
+    
     return result;
 }
