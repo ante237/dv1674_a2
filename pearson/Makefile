@@ -24,4 +24,4 @@ verify: verify.c
 	$(CC) verify.c -o verify
 
 clean:
-	rm -rf verify pearson *.o *.dSYM 2> /dev/null
+	rm -rf verify pearson pearson_par *.o *.dSYM 2> /dev/null
