@@ -51,7 +51,6 @@ std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets)
     //Change loop so result allways gets split into 64-byte sections to avoid false sharing
     for (int sample1 = 0; sample1 < datasets.size() - 1; sample1++) {
         for (int sample2 = sample1 + 1; sample2 < datasets.size(); sample2++) {
-            all[(int)(counter / MAX_THREADS)].index[counter % MAX_THREADS].res = counter;
             all[(int)(counter / MAX_THREADS)].index[counter % MAX_THREADS].vec1 = sample1;
             all[(int)(counter / MAX_THREADS)].index[counter % MAX_THREADS].vec2 = sample2;
             
@@ -62,7 +61,7 @@ std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets)
     ThreadArgs args[MAX_THREADS];
     for(int i = 0; i < MAX_THREADS; i++)
     {
-        args[i] = {i, &chunksPerThread,&datasets, &result, all};
+        args[i] = {i, &chunksPerThread, &size, &datasets, &result, all};
         pthread_create(&threads[i], NULL, threadWorks, &args[i]);
     }
 
@@ -79,15 +78,17 @@ void* threadWorks(void* voidargs)
     for(int i = 0; i < *(args->chunksPerThread); i++)
     {
         //Allocate a chunk to each thread, to avoid memory overlap
-        pearson_par(args->dataset, args->res, args->data, i + (args->tid * (*(args->chunksPerThread))));
+        pearson_par(args->dataset, args->res, args->data, i + (args->tid * (*(args->chunksPerThread))), args->vecSize);
     }
     return nullptr;
 }
 
-void* pearson_par(std::vector<Vector>* dataset, std::vector<double>* res, CalcData* data, int chunkNr)
+void* pearson_par(std::vector<Vector>* dataset, std::vector<double>* res, CalcData* data, int chunkNr, size_t vecSize)
 {
     for(int i = 0; i < MAX_THREADS; i++)
     {
+        int resPos = data[chunkNr].index[i].vec1 * vecSize + (data[chunkNr].index[i].vec2 - 1);
+
         double x_mean = (*dataset)[data[chunkNr].index[i].vec1].mean();
         double y_mean = (*dataset)[data[chunkNr].index[i].vec2].mean();
         
@@ -103,7 +104,7 @@ void* pearson_par(std::vector<Vector>* dataset, std::vector<double>* res, CalcDa
         double r =x_mm_over_x_mag.dot(y_mm_over_y_mag);
 
         if(data[chunkNr].index[i].vec1 == -1) continue;
-        (*res)[data[chunkNr].index[i].res] = std::max(std::min(r, 1.0), -1.0);
+        (*res)[resPos] = std::max(std::min(r, 1.0), -1.0);
     }
     return nullptr;
 }

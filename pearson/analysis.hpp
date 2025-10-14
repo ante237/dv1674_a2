@@ -12,7 +12,6 @@ Author: David Holmqvist <daae19@student.bth.se>
 
 struct Indexes
 {
-    int res = -1;
     int vec1;
     int vec2;
 };
@@ -26,6 +25,7 @@ struct ThreadArgs
 {
     int tid;
     size_t* chunksPerThread;
+    size_t* vecSize;
     std::vector<Vector>* dataset;
     std::vector<double>* res;
     CalcData* data;
@@ -36,7 +36,7 @@ std::vector<double> correlation_coefficients(std::vector<Vector> datasets);
 std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets);
 void* threadWorks(void* args);
 double pearson(Vector vec1, Vector vec2);
-void* pearson_par(std::vector<Vector>* dataset, std::vector<double>* res, CalcData* data, int chunkNr);
+void* pearson_par(std::vector<Vector>* dataset, std::vector<double>* res, CalcData* data, int chunkNr, size_t* vecSize);
 };
 
 #endif
