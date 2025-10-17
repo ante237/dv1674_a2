@@ -20,7 +20,8 @@ int main(int argc, char const* argv[])
     }
 
     auto datasets { Dataset::read(argv[1]) };
-    auto corrs { Analysis::correlation_coefficients_par(datasets) };
+    std::vector<double> result(datasets.size());
+    auto corrs { Analysis::correlation_coefficients_par(&datasets, &result) };
     Dataset::write(corrs, argv[2]);
 
     auto end = high_resolution_clock::now();

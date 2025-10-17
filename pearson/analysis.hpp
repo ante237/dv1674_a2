@@ -10,21 +10,16 @@ Author: David Holmqvist <daae19@student.bth.se>
 #if !defined(ANALYSIS_HPP)
 #define ANALYSIS_HPP
 
-struct Indexes
-{
-    int vec1;
-    int vec2;
-};
-
 struct CalcData
 {
-    Indexes index[MAX_THREADS];
+    int* vec1;
+    int* vec2;
 };
 
 struct ThreadArgs
 {
     int tid;
-    size_t* chunksPerThread;
+    size_t* elementsPerThread;
     size_t* vecSize;
     std::vector<Vector>* dataset;
     std::vector<double>* res;
@@ -33,10 +28,10 @@ struct ThreadArgs
 
 namespace Analysis {
 std::vector<double> correlation_coefficients(std::vector<Vector> datasets);
-std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets);
+std::vector<double> correlation_coefficients_par(std::vector<Vector>* datasets, std::vector<double>* res);
 void* threadWorks(void* args);
 double pearson(Vector vec1, Vector vec2);
-void* pearson_par(std::vector<Vector>* dataset, std::vector<double>* res, CalcData* data, int chunkNr, size_t* vecSize);
+void* pearson_par(std::vector<Vector>* dataset, std::vector<double>* res, CalcData* data, int elementNr, size_t* size);
 };
 
 #endif
