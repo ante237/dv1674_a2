@@ -6,6 +6,7 @@ Author: David Holmqvist <daae19@student.bth.se>
 #include <vector>
 
 #define MAX_THREADS 8
+#define CHUNK_SIZE 8
 
 #if !defined(ANALYSIS_HPP)
 #define ANALYSIS_HPP
@@ -19,7 +20,7 @@ struct Indexes
 
 struct CalcData
 {
-    Indexes index[MAX_THREADS];
+    Indexes index[CHUNK_SIZE];
 };
 
 struct ThreadArgs

@@ -43,17 +43,17 @@ std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets)
     std::vector<double> result {};
     result.resize(elementCount);
 
-    size_t chunkCount = (int)floor(elementCount / MAX_THREADS);
-    size_t chunksPerThread = chunkCount / MAX_THREADS;
+    size_t chunkCount = (int)floor(elementCount / CHUNK_SIZE);
+    size_t chunksPerThread = chunkCount / CHUNK_SIZE;
     CalcData* all = new CalcData[chunkCount + 1];
     int counter = 0;
 
     //Change loop so result allways gets split into 64-byte sections to avoid false sharing
     for (int sample1 = 0; sample1 < datasets.size() - 1; sample1++) {
         for (int sample2 = sample1 + 1; sample2 < datasets.size(); sample2++) {
-            all[(int)(counter / MAX_THREADS)].index[counter % MAX_THREADS].res = counter;
-            all[(int)(counter / MAX_THREADS)].index[counter % MAX_THREADS].vec1 = sample1;
-            all[(int)(counter / MAX_THREADS)].index[counter % MAX_THREADS].vec2 = sample2;
+            all[(int)(counter / CHUNK_SIZE)].index[counter % CHUNK_SIZE].res = counter;
+            all[(int)(counter / CHUNK_SIZE)].index[counter % CHUNK_SIZE].vec1 = sample1;
+            all[(int)(counter / CHUNK_SIZE)].index[counter % CHUNK_SIZE].vec2 = sample2;
             
             counter++;
         }
