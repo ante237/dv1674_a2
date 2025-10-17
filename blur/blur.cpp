@@ -7,9 +7,11 @@ Author: David Holmqvist <daae19@student.bth.se>
 #include "filters.hpp"
 #include <cstdlib>
 #include <iostream>
+#define MAX_THREADS 1
 
 int main(int argc, char const* argv[])
 {
+    
     if (argc != 4) {
         std::cerr << "Usage: " << argv[0] << " [radius] [infile] [outfile]" << std::endl;
         std::exit(1);
@@ -21,7 +23,7 @@ int main(int argc, char const* argv[])
     auto m { reader(argv[2]) };
     auto radius { static_cast<unsigned>(std::stoul(argv[1])) };
 
-    auto blurred { Filter::blur(m, radius) };
+    auto blurred { Filter::blur(m, radius, MAX_THREADS) };
     writer(blurred, argv[3]);
 
     return 0;
