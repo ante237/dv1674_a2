@@ -7,6 +7,7 @@ Author: David Holmqvist <daae19@student.bth.se>
  * Improvements to file
  * - Threads
  * - Weight Pre-Calculations
+ * - Row-based partitioning & loop ordering
  */
 
 #include "filters.hpp"
@@ -48,12 +49,10 @@ namespace Filter
         auto& scratch = *args->scratch;
         int radius = args->radius;
 
-        // double w[Gauss::max_radius]{};
-        // Gauss::get_weights(radius, w);
         const double* w = args->weights;
-
-        for (int x = args->start_x; x < args->end_x; x++) {
-            for (int y = args->start_y; y < args->end_y; y++) {
+        
+        {for (int y = args->start_y; y < args->end_y; y++)
+            for (int x = args->start_x; x < args->end_x; x++) {
                 auto r{w[0] * src.r(x, y)}, g{w[0] * src.g(x, y)}, b{w[0] * src.b(x, y)}, n{w[0]};
 
                 for (int wi = 1; wi <= radius; wi++) {
@@ -89,12 +88,9 @@ namespace Filter
         auto& dst = *args->dst;
         int radius = args->radius;
 
-        // double w[Gauss::max_radius]{};
-        // Gauss::get_weights(radius, w);
         const double* w = args->weights;
-
-        for (int x = args->start_x; x < args->end_x; x++) {
-            for (int y = args->start_y; y < args->end_y; y++) {
+        for (int y = args->start_y; y < args->end_y; y++){
+            for (int x = args->start_x; x < args->end_x; x++) {
                 auto r{w[0] * scratch.r(x, y)}, g{w[0] * scratch.g(x, y)}, b{w[0] * scratch.b(x, y)}, n{w[0]};
 
                 for (int wi = 1; wi <= radius; wi++) {
@@ -125,18 +121,23 @@ namespace Filter
 
     Matrix blur(Matrix m, const int radius, const int num_threads)
     {
-        Matrix scratch{PPM::max_dimension};
         Matrix dst{m};
+        const int width = dst.get_x_size();
+        const int height = dst.get_y_size();
+
+        Matrix scratch{PPM::max_dimension};
 
         double w[Gauss::max_radius]{};
         Gauss::get_weights(radius, w);
 
-        int cols_per_thread = dst.get_x_size() / num_threads;
+        const int rows_per_thread = (height + num_threads - 1) / num_threads;
         pthread_t threads[num_threads];
         BlurArgs args[num_threads];
 
         for (int i = 0; i < num_threads; i++) {
-            args[i] = {&m, &dst, &scratch, radius, i * cols_per_thread, (i == num_threads - 1) ? static_cast<int>(dst.get_x_size()) : (i + 1) * cols_per_thread, 0, static_cast<int>(dst.get_y_size()), w};
+            int start_y = i * rows_per_thread;
+            int end_y = std::min(height, (i + 1) * rows_per_thread);
+            args[i] = {&m, &dst, &scratch, radius, 0, width,start_y, end_y,w};
             pthread_create(&threads[i], nullptr, blur_horizontal, &args[i]);
         }
 
@@ -145,7 +146,9 @@ namespace Filter
         }
 
         for (int i = 0; i < num_threads; i++) {
-            args[i] = {&m, &dst, &scratch, radius, i * cols_per_thread, (i == num_threads - 1) ? static_cast<int>(dst.get_x_size()) : (i + 1) * cols_per_thread, 0, static_cast<int>(dst.get_y_size()), w};
+            int start_y = i * rows_per_thread;
+            int end_y = std::min(height, (i + 1) * rows_per_thread);
+            args[i] = {&scratch, &dst, &scratch, radius,0, width,start_y, end_y,w};
             pthread_create(&threads[i], nullptr, blur_vertical, &args[i]);
         }
 
