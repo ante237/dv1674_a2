@@ -12,6 +12,7 @@ Author: David Holmqvist <daae19@student.bth.se>
 
 struct Indexes
 {
+    int res = -1;
     int vec1;
     int vec2;
 };

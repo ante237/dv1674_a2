@@ -34,7 +34,7 @@ Vector::Vector(unsigned size, double *data)
 }
 
 Vector::Vector(const Vector &other)
-    : Vector{other.size}
+: Vector{other.size}
 {
     for (auto i{0}; i + 3 < size; i += 4)
     {
@@ -43,6 +43,14 @@ Vector::Vector(const Vector &other)
         data[i+2] = other.data[i+2];
         data[i+3] = other.data[i+3];
     }
+}
+
+//Use move semantics to avoid copying on rvalues
+Vector::Vector(Vector &&other)
+    : size(other.size), data(other.data)
+{
+    other.size = 0;
+    other.data = nullptr;
 }
 
 unsigned Vector::get_size() const
@@ -83,19 +91,19 @@ double Vector::mean() const
 
 double Vector::magnitude() const
 {
-    auto dot_prod{dot(*this)};
+    double dot_prod{dot(*this)};
     return std::sqrt(dot_prod);
 }
 
 //Takes longer than non-simd?
 Vector Vector::operator/(double div)
 {
-    auto result{*this};
+    Vector result(size);
     __m256d divisor = _mm256_set1_pd(div);
 
     for (auto i{0}; i + 3 < size; i += 4)
     {
-        __m256d vecSeg = _mm256_load_pd(&(result.data[i]));
+        __m256d vecSeg = _mm256_load_pd(&(this->data[i]));
         vecSeg = _mm256_div_pd(vecSeg, divisor);
         _mm256_store_pd(&(result.data)[i], vecSeg);
     }
@@ -105,12 +113,12 @@ Vector Vector::operator/(double div)
 
 Vector Vector::operator-(double sub)
 {
-    auto result{*this};
+    Vector result(size);
     __m256d scalar = _mm256_set1_pd(sub);
 
     for (auto i{0}; i + 3 < size; i += 4)
     {
-        __m256d vecSeg = _mm256_load_pd(&(result.data)[i]);
+        __m256d vecSeg = _mm256_load_pd(&(this->data)[i]);
         vecSeg = _mm256_sub_pd(vecSeg, scalar);
         _mm256_store_pd(&(result.data)[i], vecSeg);
     }

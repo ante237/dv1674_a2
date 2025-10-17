@@ -21,12 +21,15 @@ int main(int argc, char const* argv[])
 
     auto datasets { Dataset::read(argv[1]) };
     auto corrs { Analysis::correlation_coefficients_par(datasets) };
+    auto printStart = high_resolution_clock::now();
     Dataset::write(corrs, argv[2]);
 
     auto end = high_resolution_clock::now();
 
     auto duration = duration_cast<microseconds>(end - start);
+    auto printTime = duration_cast<microseconds>(end - printStart);
     std::cout << "Time elapsed: " << duration.count() << " µs\n";
+    std::cout << "Print time: " << printTime.count() << " µs\n";
 
     return 0;
 }
