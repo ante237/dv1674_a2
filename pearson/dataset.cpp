@@ -11,6 +11,8 @@ Author: David Holmqvist <daae19@student.bth.se>
 #include <algorithm>
 #include <iomanip>
 #include <limits>
+#include <stdio.h>
+#include <float.h>
 
 namespace Dataset
 {
@@ -30,39 +32,51 @@ namespace Dataset
 
         f >> dimension;
         std::string line{};
-
-        std::getline(f, line); // ignore first newline
+        std::getline(f, line);
+        //Get first line and reserve space required
+        result.reserve(dimension);
 
         while (std::getline(f, line))
         {
-            std::stringstream ss{line};
+            const char* ptr = line.c_str();
+            char* end;
             Vector new_vec{dimension};
-            std::copy_n(std::istream_iterator<double>{ss},
-                        dimension,
-                        new_vec.get_data());
-            result.push_back(new_vec);
-        }
 
+            for(int i = 0; i < dimension; i++)
+            {
+                new_vec[i] = std::strtod(ptr, &end);
+                ptr = end;
+            }
+            result.push_back(std::move(new_vec));
+        }
         return result;
     }
 
+    
     void write(std::vector<double> data, std::string filename)
     {
-        std::ofstream f{};
-
-        f.open(filename);
-
-        if (!f)
-        {
-            std::cerr << "Failed to write data to file " << filename << std::endl;
-            return;
-        }
-
-        //Potential batch print (not iterate over each index?)
+        //Set buffer size to fit inside of L2 cache
+        constexpr size_t BUF_SIZE = 128 * 1024;
+        char writeBuf[BUF_SIZE];
+        int offset = 0;
+        
+        FILE* f;
+        f = fopen(filename.c_str(), "w");
         for (auto i{0}; i < data.size(); i++)
         {
-            f << std::setprecision(std::numeric_limits<double>::digits10 + 1) << data[i] << std::endl;
+            int written = snprintf(writeBuf + offset, sizeof(writeBuf) - offset, "%.*f\n", DBL_DIG + 1, data[i]);
+            offset += written;
+
+            //Write buffer if nearly full
+            if(offset > BUF_SIZE - 32)
+            {
+                fwrite(writeBuf, sizeof(char), offset, f);
+                offset = 0;
+            }
         }
+        if(offset > 0) fwrite(writeBuf, sizeof(char), offset, f);
+
+        fclose(f);
     }
 
 };
