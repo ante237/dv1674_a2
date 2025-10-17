@@ -6,6 +6,7 @@ Author: David Holmqvist <daae19@student.bth.se>
 /*
  * Improvements to file
  * - Threads
+ * - Weight Pre-Calculations
  */
 
 #include "filters.hpp"
@@ -37,6 +38,7 @@ namespace Filter
         int end_x;
         int start_y;
         int end_y;
+        double *weights;
     };
 
     void* blur_horizontal(void* arg)
@@ -46,8 +48,9 @@ namespace Filter
         auto& scratch = *args->scratch;
         int radius = args->radius;
 
-        double w[Gauss::max_radius]{};
-        Gauss::get_weights(radius, w);
+        // double w[Gauss::max_radius]{};
+        // Gauss::get_weights(radius, w);
+        const double* w = args->weights;
 
         for (int x = args->start_x; x < args->end_x; x++) {
             for (int y = args->start_y; y < args->end_y; y++) {
@@ -86,8 +89,9 @@ namespace Filter
         auto& dst = *args->dst;
         int radius = args->radius;
 
-        double w[Gauss::max_radius]{};
-        Gauss::get_weights(radius, w);
+        // double w[Gauss::max_radius]{};
+        // Gauss::get_weights(radius, w);
+        const double* w = args->weights;
 
         for (int x = args->start_x; x < args->end_x; x++) {
             for (int y = args->start_y; y < args->end_y; y++) {
@@ -124,12 +128,15 @@ namespace Filter
         Matrix scratch{PPM::max_dimension};
         Matrix dst{m};
 
+        double w[Gauss::max_radius]{};
+        Gauss::get_weights(radius, w);
+
         int cols_per_thread = dst.get_x_size() / num_threads;
         pthread_t threads[num_threads];
         BlurArgs args[num_threads];
 
         for (int i = 0; i < num_threads; i++) {
-            args[i] = {&m, &dst, &scratch, radius, i * cols_per_thread, (i == num_threads - 1) ? static_cast<int>(dst.get_x_size()) : (i + 1) * cols_per_thread, 0, static_cast<int>(dst.get_y_size())};
+            args[i] = {&m, &dst, &scratch, radius, i * cols_per_thread, (i == num_threads - 1) ? static_cast<int>(dst.get_x_size()) : (i + 1) * cols_per_thread, 0, static_cast<int>(dst.get_y_size()), w};
             pthread_create(&threads[i], nullptr, blur_horizontal, &args[i]);
         }
 
@@ -138,7 +145,7 @@ namespace Filter
         }
 
         for (int i = 0; i < num_threads; i++) {
-            args[i] = {&m, &dst, &scratch, radius, i * cols_per_thread, (i == num_threads - 1) ? static_cast<int>(dst.get_x_size()) : (i + 1) * cols_per_thread, 0, static_cast<int>(dst.get_y_size())};
+            args[i] = {&m, &dst, &scratch, radius, i * cols_per_thread, (i == num_threads - 1) ? static_cast<int>(dst.get_x_size()) : (i + 1) * cols_per_thread, 0, static_cast<int>(dst.get_y_size()), w};
             pthread_create(&threads[i], nullptr, blur_vertical, &args[i]);
         }
 
