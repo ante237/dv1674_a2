@@ -22,7 +22,7 @@ int main(int argc, char const* argv[])
     auto radius = static_cast<unsigned>(std::stoul(argv[1]));
     auto num_threads = std::stoi(argv[4]);
 
-    auto blurred = Filter::blur(m, radius, num_threads);
+    auto blurred = Filter::blur(m, radius);
     writer(blurred, argv[3]);
 
     return 0;

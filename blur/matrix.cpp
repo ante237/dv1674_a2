@@ -30,9 +30,9 @@ Matrix::Matrix()
 }
 
 Matrix::Matrix(unsigned dimension)
-    : R { new unsigned char[dimension * dimension] }
-    , G { new unsigned char[dimension * dimension] }
-    , B { new unsigned char[dimension * dimension] }
+    : R { new(std::align_val_t(32)) unsigned char[dimension * dimension] }
+    , G { new(std::align_val_t(32)) unsigned char[dimension * dimension] }
+    , B { new(std::align_val_t(32)) unsigned char[dimension * dimension] }
     , x_size { dimension }
     , y_size { dimension }
     , color_max { 0 }
@@ -40,9 +40,9 @@ Matrix::Matrix(unsigned dimension)
 }
 
 Matrix::Matrix(const Matrix& other)
-    : R { new unsigned char[other.x_size * other.y_size] }
-    , G { new unsigned char[other.x_size * other.y_size] }
-    , B { new unsigned char[other.x_size * other.y_size] }
+    : R { new(std::align_val_t(32)) unsigned char[other.x_size * other.y_size] }
+    , G { new(std::align_val_t(32)) unsigned char[other.x_size * other.y_size] }
+    , B { new(std::align_val_t(32)) unsigned char[other.x_size * other.y_size] }
     , x_size { other.x_size }
     , y_size { other.y_size }
     , color_max { other.color_max }
