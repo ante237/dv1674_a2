@@ -87,7 +87,7 @@ void* threadWorks(void* voidargs)
 
 void* pearson_par(std::vector<Vector>* dataset, std::vector<double>* res, CalcData* data, int chunkNr, size_t* vecSize)
 {
-    for(int i = 0; i < MAX_THREADS; i++)
+    for(int i = 0; i < CHUNK_SIZE; i++)
     {
         double x_mean = (*dataset)[data[chunkNr].index[i].vec1].mean();
         double y_mean = (*dataset)[data[chunkNr].index[i].vec2].mean();
