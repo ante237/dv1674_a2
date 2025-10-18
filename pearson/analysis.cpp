@@ -32,9 +32,9 @@ std::vector<double> correlation_coefficients(std::vector<Vector> datasets)
     return result;
 }
 
-std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets)
+std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets, int numthreads)
 {
-    pthread_t threads[MAX_THREADS];
+    pthread_t threads[numthreads];
     //Calculate number of resulting elements
     size_t size = datasets.size();
     size_t elementCount = (size * (size - 1)) / 2;
@@ -44,7 +44,7 @@ std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets)
     result.resize(elementCount);
 
     size_t chunkCount = (int)floor(elementCount / CHUNK_SIZE);
-    size_t chunksPerThread = chunkCount / CHUNK_SIZE;
+    size_t chunksPerThread = chunkCount / numthreads;
     CalcData* all = new CalcData[chunkCount + 1];
     int counter = 0;
 
@@ -59,14 +59,14 @@ std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets)
         }
     }
     //Initialize threads
-    ThreadArgs args[MAX_THREADS];
-    for(int i = 0; i < MAX_THREADS; i++)
+    ThreadArgs args[numthreads];
+    for(int i = 0; i < numthreads; i++)
     {
         args[i] = {i, &chunksPerThread, &size, &datasets, &result, all};
         pthread_create(&threads[i], NULL, threadWorks, &args[i]);
     }
 
-    for (int i = 0; i < MAX_THREADS; i++) {
+    for (int i = 0; i < numthreads; i++) {
         pthread_join(threads[i], nullptr);
     }
 

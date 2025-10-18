@@ -3,7 +3,7 @@
 CXX=g++-13
 CXXFLAGS=-std=c++17 -g -Wunused -Wall -Wunused -mavx -march=native
 
-all: pearson verify
+all: pearson pearson_par verify
 
 pearson: vector dataset analysis pearson.cpp 
 	$(CXX) $(CXXFLAGS) pearson.cpp vector.o dataset.o analysis.o -o pearson

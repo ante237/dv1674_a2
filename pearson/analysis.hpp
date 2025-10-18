@@ -35,7 +35,7 @@ struct ThreadArgs
 
 namespace Analysis {
 std::vector<double> correlation_coefficients(std::vector<Vector> datasets);
-std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets);
+std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets, int numthreads);
 void* threadWorks(void* args);
 double pearson(Vector vec1, Vector vec2);
 void* pearson_par(std::vector<Vector>* dataset, std::vector<double>* res, CalcData* data, int chunkNr, size_t* vecSize);
