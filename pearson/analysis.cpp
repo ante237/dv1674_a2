@@ -24,8 +24,7 @@ std::vector<double> correlation_coefficients(std::vector<Vector> datasets)
 
     for (auto sample1 { 0 }; sample1 < datasets.size() - 1; sample1++) {
         for (auto sample2 { sample1 + 1 }; sample2 < datasets.size(); sample2++) {
-            auto corr { pearson(datasets[sample1], datasets[sample2]) };
-            result.push_back(corr);
+            pearson(&datasets[sample1], &datasets[sample2], &result);
         }
     }
 
@@ -110,13 +109,13 @@ void* pearson_par(std::vector<Vector>* dataset, std::vector<double>* res, CalcDa
     return nullptr;
 }
 
-double pearson(Vector vec1, Vector vec2)
+void pearson(Vector* vec1, Vector* vec2, std::vector<double>* res)
 {
-    auto x_mean { vec1.mean() };
-    auto y_mean { vec2.mean() };
+    auto x_mean { vec1->mean() };
+    auto y_mean { vec2->mean() };
 
-    auto x_mm { vec1 - x_mean };
-    auto y_mm { vec2 - y_mean };
+    auto x_mm { *vec1 - x_mean };
+    auto y_mm { *vec2 - y_mean };
 
     auto x_mag { x_mm.magnitude() };
     auto y_mag { y_mm.magnitude() };
@@ -126,6 +125,6 @@ double pearson(Vector vec1, Vector vec2)
 
     auto r { x_mm_over_x_mag.dot(y_mm_over_y_mag) };
 
-    return std::max(std::min(r, 1.0), -1.0);
+    res->push_back(std::max(std::min(r, 1.0), -1.0));
 }
 };
