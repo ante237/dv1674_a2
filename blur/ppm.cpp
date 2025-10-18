@@ -1,12 +1,18 @@
 /*
 Author: David Holmqvist <daae19@student.bth.se>
 */
+/*
+ * Improvements to file
+ * - Changed Writnig function to C-style Batch 
+ */
 
 #include "ppm.hpp"
 #include <fstream>
 #include <iostream>
 #include <regex>
 #include <stdexcept>
+#include <cstdio>
+#include <algorithm>
 
 namespace PPM {
 
@@ -154,34 +160,45 @@ void error(std::string op, std::string what)
 
 void Writer::operator()(Matrix m, std::string filename)
 {
-    try {
-        std::ofstream f {};
-
-        f.open(filename);
-
-        if (!f) {
-            throw std::runtime_error { "failed to open " + filename };
-        }
-
-        f << magic_number << std::endl;
-
-        f << m.get_x_size() << " " << m.get_y_size() << std::endl;
-        f << m.get_color_max() << std::endl;
-
-        auto size { m.get_x_size() * m.get_y_size() };
-        auto R { m.get_R() }, G { m.get_G() }, B { m.get_B() };
-        auto it_R { R }, it_G { G }, it_B { B };
-
-        while (it_R < R + size && it_G < G + size && it_B < B + size) {
-            f << *it_R++
-              << *it_G++
-              << *it_B++;
-        }
-
-        f.close();
-    } catch (std::runtime_error e) {
-        error("writing", e.what());
+    // Open file in binary mode
+    FILE* f = fopen(filename.c_str(), "wb");
+    if (!f) {
+        error("writing", "failed to open " + filename);
+        return;
     }
+    // Write PPM header (P6 format)
+    fprintf(f, "%s\n", magic_number);
+    fprintf(f, "%u %u\n", m.get_x_size(), m.get_y_size());
+    fprintf(f, "%u\n", m.get_color_max());
+    // Prepare for batched writing
+    constexpr size_t BUF_SIZE = 128 * 1024; // fits in L2 cache
+    unsigned char writeBuf[BUF_SIZE];
+    size_t offset = 0;
+
+    const size_t pixelCount = m.get_x_size() * m.get_y_size();
+    const unsigned char* R = m.get_R();
+    const unsigned char* G = m.get_G();
+    const unsigned char* B = m.get_B();
+
+    // Loop over all pixels
+    for (size_t i = 0; i < pixelCount; ++i) {
+        writeBuf[offset++] = R[i];
+        writeBuf[offset++] = G[i];
+        writeBuf[offset++] = B[i];
+
+        // Flush when nearly full
+        if (offset > BUF_SIZE - 3) {
+            fwrite(writeBuf, sizeof(unsigned char), offset, f);
+            offset = 0;
+        }
+    }
+    // Write any remaining bytes
+    if (offset > 0) {
+        fwrite(writeBuf, sizeof(unsigned char), offset, f);
+    }
+
+    fclose(f);
 }
+
 
 }

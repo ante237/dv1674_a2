@@ -121,7 +121,7 @@ namespace Filter
         return nullptr;
     }
 
-    Matrix blur(Matrix m, const int radius)
+    Matrix blur(Matrix m, const int radius, const int num_threads)
     {
         Matrix dst{m};
         const int width = dst.get_x_size();
@@ -132,29 +132,29 @@ namespace Filter
         double w[Gauss::max_radius]{};
         Gauss::get_weights(radius, w);
 
-        const int rows_per_thread = (height +MAX_THREADS - 1) /MAX_THREADS;
-        pthread_t threads[MAX_THREADS];
-        BlurArgs args[MAX_THREADS];
+        const int rows_per_thread = (height + num_threads - 1) / num_threads;
+        pthread_t threads[num_threads];
+        BlurArgs args[num_threads];
 
-        for (int i = 0; i <MAX_THREADS; i++) {
+        for (int i = 0; i < num_threads; i++) {
             int start_y = i * rows_per_thread;
             int end_y = std::min(height, (i + 1) * rows_per_thread);
             args[i] = {&m, &dst, &scratch, radius, 0, width,start_y, end_y,w};
             pthread_create(&threads[i], nullptr, blur_horizontal, &args[i]);
         }
 
-        for (int i = 0; i <MAX_THREADS; i++) {
+        for (int i = 0; i <num_threads; i++) {
             pthread_join(threads[i], nullptr);
         }
 
-        for (int i = 0; i <MAX_THREADS; i++) {
+        for (int i = 0; i <num_threads; i++) {
             int start_y = i * rows_per_thread;
             int end_y = std::min(height, (i + 1) * rows_per_thread);
             args[i] = {&scratch, &dst, &scratch, radius,0, width,start_y, end_y,w};
             pthread_create(&threads[i], nullptr, blur_vertical, &args[i]);
         }
 
-        for (int i = 0; i <MAX_THREADS; i++) {
+        for (int i = 0; i <num_threads; i++) {
             pthread_join(threads[i], nullptr);
         }
 
