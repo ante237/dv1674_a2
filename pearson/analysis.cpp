@@ -44,6 +44,7 @@ std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets, i
 
     size_t chunkCount = (int)floor(elementCount / CHUNK_SIZE);
     size_t chunksPerThread = chunkCount / numthreads;
+    size_t remainder = chunkCount % numthreads;
     CalcData* all = new CalcData[chunkCount + 1];
     int counter = 0;
 
@@ -58,11 +59,17 @@ std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets, i
         }
     }
     //Initialize threads
+    size_t start = 0;
     ThreadArgs args[numthreads];
     for(int i = 0; i < numthreads; i++)
     {
-        args[i] = {i, &chunksPerThread, &size, &datasets, &result, all};
+        size_t extra = (i < remainder) ? 1 : 0;
+        size_t end = start + chunksPerThread + extra;
+
+        args[i] = {i, start, end, &size, &datasets, &result, all};
         pthread_create(&threads[i], NULL, threadWorks, &args[i]);
+
+        start = end;
     }
 
     for (int i = 0; i < numthreads; i++) {
@@ -77,10 +84,10 @@ std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets, i
 void* threadWorks(void* voidargs)
 {
     ThreadArgs* args = (ThreadArgs*)voidargs;
-    for(int i = 0; i < *(args->chunksPerThread); i++)
+    for(size_t i = args->start; i < args->end; i++)
     {
         //Allocate a chunk to each thread, to avoid memory overlap
-        pearson_par(args->dataset, args->res, args->data, i + (args->tid * (*(args->chunksPerThread))), args->vecSize);
+        pearson_par(args->dataset, args->res, args->data, i, args->vecSize);
     }
     return nullptr;
 }

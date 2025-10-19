@@ -26,7 +26,9 @@ struct CalcData
 struct ThreadArgs
 {
     int tid;
-    size_t* chunksPerThread;
+    //size_t* chunksPerThread;
+    size_t start;
+    size_t end;
     size_t* vecSize;
     std::vector<Vector>* dataset;
     std::vector<double>* res;
