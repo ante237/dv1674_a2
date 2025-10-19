@@ -45,14 +45,6 @@ Vector::Vector(const Vector &other)
     }
 }
 
-//Use move semantics to avoid copying on rvalues
-Vector::Vector(Vector &&other)
-    : size(other.size), data(other.data)
-{
-    other.size = 0;
-    other.data = nullptr;
-}
-
 unsigned Vector::get_size() const
 {
     return size;

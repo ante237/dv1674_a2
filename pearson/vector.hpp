@@ -15,7 +15,6 @@ public:
     Vector(unsigned size);
     Vector(unsigned size, double* data);
     Vector(const Vector& other);
-    Vector(Vector&& other);
     ~Vector();
 
     double magnitude() const;
