@@ -2,8 +2,10 @@
 Author: David Holmqvist <daae19@student.bth.se>
 */
 
+#include <cstddef>
+
 #if !defined(VECTOR_HPP)
-#define VECTOR_HPP
+#define VECTOR_HPP 
 
 class Vector {
 private:

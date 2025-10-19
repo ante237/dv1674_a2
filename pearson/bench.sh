@@ -1,11 +1,12 @@
 size=$1
+numThreads=$2
 sum_time=0
 sum_user=0
 sum_sys=0
 sum_util=0
 
 for i in $(seq 1 5); do
-    output=$(/usr/bin/time -v ./pearson_par data/${size}.data data_o/${size}_par 2>&1)
+    output=$(/usr/bin/time -v ./pearson_par data/${size}.data data_o/${size}_par.data ${numThreads} 2>&1)
 
     time_us=$(echo "$output" | grep "Time elapsed" | awk '{print $3}' | tr -d 'µs')
     sum_time=$(echo "$sum_time + $time_us" | bc)
