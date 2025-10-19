@@ -16,8 +16,6 @@ Author: David Holmqvist <daae19@student.bth.se>
 #include <cmath>
 #include <pthread.h>
 
-#define MAX_THREADS 8
-
 namespace Filter
 {
     namespace Gauss
