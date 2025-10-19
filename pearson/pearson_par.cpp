@@ -14,13 +14,13 @@ int main(int argc, char const* argv[])
     using namespace std::chrono;
     auto start = high_resolution_clock::now();
     
-    if (argc != 3) {
-        std::cerr << "Usage: " << argv[0] << " [dataset] [outfile]" << std::endl;
+    if (argc != 4) {
+        std::cerr << "Usage: " << argv[0] << " [dataset] [outfile] [num_threads]" << std::endl;
         std::exit(1);
     }
 
     auto datasets { Dataset::read(argv[1]) };
-    auto corrs { Analysis::correlation_coefficients_par(datasets) };
+    auto corrs { Analysis::correlation_coefficients_par(datasets, atoi(argv[3])) };
     auto printStart = high_resolution_clock::now();
     Dataset::write(corrs, argv[2]);
 

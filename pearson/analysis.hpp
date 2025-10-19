@@ -6,6 +6,7 @@ Author: David Holmqvist <daae19@student.bth.se>
 #include <vector>
 
 #define MAX_THREADS 8
+#define CHUNK_SIZE 8
 
 #if !defined(ANALYSIS_HPP)
 #define ANALYSIS_HPP
@@ -34,7 +35,7 @@ struct ThreadArgs
 
 namespace Analysis {
 std::vector<double> correlation_coefficients(std::vector<Vector> datasets);
-std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets);
+std::vector<double> correlation_coefficients_par(std::vector<Vector> datasets, int numthreads);
 void* threadWorks(void* args);
 double pearson(Vector vec1, Vector vec2);
 void* pearson_par(std::vector<Vector>* dataset, std::vector<double>* res, CalcData* data, int chunkNr, size_t* vecSize);
