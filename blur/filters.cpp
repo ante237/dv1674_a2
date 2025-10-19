@@ -30,6 +30,7 @@ namespace Filter
         }
     }
 
+    // Struct that holds the arguments passed to each worker thread
     struct BlurArgs {
         Matrix *src;
         Matrix *dst;
@@ -42,6 +43,8 @@ namespace Filter
         double *weights;
     };
 
+    // Each thread applies a 1D horizontal Gaussian blur to its assigned rows.
+    // Results are written into the scratch buffer.
     void* blur_horizontal(void* arg)
     {
         auto* args = static_cast<BlurArgs*>(arg);
@@ -81,6 +84,8 @@ namespace Filter
         return nullptr;
     }
 
+    // Each thread applies a 1D vertical Gaussian blur to its assigned rows,
+    // using the horizontally blurred data from the scratch buffer.
     void* blur_vertical(void* arg)
     {
         auto* args = static_cast<BlurArgs*>(arg);
@@ -119,6 +124,9 @@ namespace Filter
         return nullptr;
     }
 
+    // Handles thread creation, work distribution, and synchronization.
+    // The blur is applied in two passes (horizontal + vertical)
+    // to achieve a 2D Gaussian blur efficiently.
     Matrix blur(Matrix m, const int radius, const int num_threads)
     {
         Matrix dst{m};
@@ -134,6 +142,7 @@ namespace Filter
         pthread_t threads[num_threads];
         BlurArgs args[num_threads];
 
+        // Each thread processes a unique block of rows
         for (int i = 0; i < num_threads; i++) {
             int start_y = i * rows_per_thread;
             int end_y = std::min(height, (i + 1) * rows_per_thread);
@@ -141,10 +150,12 @@ namespace Filter
             pthread_create(&threads[i], nullptr, blur_horizontal, &args[i]);
         }
 
+        // Wait for all horizontal threads to finish before moving to next pass
         for (int i = 0; i <num_threads; i++) {
             pthread_join(threads[i], nullptr);
         }
 
+        // Now blur vertically using the intermediate results in scratch
         for (int i = 0; i <num_threads; i++) {
             int start_y = i * rows_per_thread;
             int end_y = std::min(height, (i + 1) * rows_per_thread);
@@ -152,6 +163,7 @@ namespace Filter
             pthread_create(&threads[i], nullptr, blur_vertical, &args[i]);
         }
 
+        // Wait for all vertical threads to complete
         for (int i = 0; i <num_threads; i++) {
             pthread_join(threads[i], nullptr);
         }
